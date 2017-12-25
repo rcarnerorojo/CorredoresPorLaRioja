@@ -1,0 +1,14 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+     intl.twig.extension:
+         class: Twig_Extensions_Extension_Intl
+         tags: [{ name : 'twig.extension' }]
+   
+     twig.extension.debug:
+        class: Twig_Extension_Debug
+        tags: 
+            - { name: twig.extension }         

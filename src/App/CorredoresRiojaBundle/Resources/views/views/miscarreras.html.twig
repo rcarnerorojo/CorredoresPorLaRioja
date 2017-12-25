@@ -1,0 +1,77 @@
+{# Extendemos la plantilla zonacorredores #}
+{% extends 'AppCorredoresRiojaBundle:views:zonacorredores.html.twig' %}
+
+{% block content %}
+
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+        <div class="contenido">
+
+            <p>Hola {{ corredor.nombre }}, a continuación se muestran las carreras en las que estás inscrito y las carreras que has disputado.</p>
+
+            <h1>Carreras por disputar</h1>
+            <div class="centro"/>
+            {% if carrerasFuturas|length > 0  %}
+                <ul>
+                    <li class="columna">
+                        <ul>
+                            {% for carrera in carrerasFuturas %}
+
+                                <li class="celda">
+                                    <div class="parteCelda">
+                                        <img src="/bundles/appcorredoresrioja/images/matutrail.jpg"/>
+                                    </div>
+                                    <div class="parteCelda2">
+                                        <h3><a href="{{ path('app_corredores_rioja_carrera_por_slug', {'slug': carrera.nombre}, {'_locale': app.request.locale})}}">{{ carrera.nombre }}</a></h3>
+                                        <p>{{ carrera.fechaCelebracion|localizeddate('medium', 'short') }}</p>
+                                        <div style="float:right; padding:10px 5px">
+                                            <a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+                                               href="{{ path('app_corredores_rioja_desapuntar_carrera_por_slug', {'slug': carrera.nombre}, {'_locale': app.request.locale})}}" ><span>Desapuntarse</span> </a>
+                                        </div>
+                                    </div>    
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <p>No tienes carreras por disputar.</p>
+            {% endif %}
+
+        </div>
+        <div class="clear"></div>   
+        <h1>Carreras disputadas</h1>
+        <div class="centro"/>
+        {% if carrerasDisputadas|length > 0  %}
+            <ul>
+                <li class="columna">
+                    <ul>
+                        {% for carrera in carrerasDisputadas %}
+
+                            <li class="celda">
+                                <div class="parteCelda">
+                                    <img src="/bundles/appcorredoresrioja/images/ur.png"/>
+                                </div>
+                                <div class="parteCelda2">
+                                    <h3><a href="{{ path('app_corredores_rioja_carrera_por_slug', {'slug': carrera.nombre}, {'_locale': app.request.locale})}}">{{ carrera.nombre }}</a></h3>
+                                    <p>{{ carrera.fechaCelebracion|localizeddate('medium', 'short') }}</p>
+                                    <div style="float:right; padding:10px 5px">
+                                        <a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+                                           href="/corredores/clasificaciones/{{ carrera.nombre }}" ><span>Clasificaciones</span> </a>
+                                    </div>
+                                </div>    
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        {% else %}            
+            <p>Todavía no has disputado una carrera.</p>
+        {% endif %}
+    </div>
+
+
+{% endif %}
+
+{% endblock %}

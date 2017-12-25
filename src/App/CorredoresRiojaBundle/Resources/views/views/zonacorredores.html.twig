@@ -1,0 +1,31 @@
+{# Extendemos la plantilla base #}
+{% extends 'AppCorredoresRiojaBundle:views:base.html.twig' %}
+
+{% block menu %}
+
+    <div id="menu" >
+        <ul>
+            <li>
+                <a href="{{ path('app_corredores_rioja_portada', {'_locale': app.request.locale})}}">{% trans from 'messages' %}menu.portada{% endtrans %}<br/></a>
+            </li>
+            <li>
+                <a href="{{ path('app_corredores_rioja_carreras', {'_locale': app.request.locale})}}">{% trans from 'messages' %}menu.carreras{% endtrans %}<br/></a>
+            </li>
+            <li>
+                <a href="{{ path('app_corredores_rioja_mis_carreras', {'_locale': app.request.locale})}}">{% trans from 'messages' %}menu.miscarreras{% endtrans %}<br/></a>
+            </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li>
+                <a href="{{ path('usuario_logout', {'_locale': app.request.locale})}}">Logout<br/></a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{ path('usuario_login', {'_locale': app.request.locale})}}">Login<br/></a>
+            </li>                
+            {% endif %}
+        </ul>
+        <div style="clear: left;"></div>
+    </div>
+</div>     
+
+{% endblock %}

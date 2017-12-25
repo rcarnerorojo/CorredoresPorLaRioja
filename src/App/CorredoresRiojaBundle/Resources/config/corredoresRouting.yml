@@ -1,0 +1,41 @@
+app_corredores_rioja_carreras:
+    path:     /carreras
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:mostrarTodas }
+
+app_corredores_rioja_mis_carreras:
+    path:     /miscarreras
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:mostrarMisCarreras }    
+    
+app_corredores_rioja_carrera_por_slug:
+    path:     /carrera/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:mostrarCarrera }
+    
+app_corredores_rioja_organizacion_por_slug:
+    path:     /organizacion/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:Organizacion:mostrarOrganizacion }
+
+app_corredores_rioja_inscribir_carrera_por_slug:
+    path:     /inscribir/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:inscribirCarrera }
+
+app_corredores_rioja_desapuntar_carrera_por_slug:
+    path:     /desapuntar/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:desapuntarCarrera }
+
+registro:
+    path:      /registro
+    defaults: { _controller: AppCorredoresRiojaBundle:Default:registro }
+
+listarCorredores:
+    path:   /listarCorredores
+    defaults: { _controller: AppCorredoresRiojaBundle:Corredor:listarCorredores }
+    
+usuario_login:
+    path: /login
+    defaults: { _controller: AppCorredoresRiojaBundle:Security:login }
+
+usuario_login_check:
+    path: /login_check
+    
+usuario_logout:
+    path: /logout
